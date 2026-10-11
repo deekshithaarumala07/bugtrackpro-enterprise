@@ -1,0 +1,3 @@
+package com.bugtracker.service;
+import org.springframework.beans.factory.annotation.Value; import org.springframework.mail.SimpleMailMessage; import org.springframework.mail.javamail.JavaMailSender; import org.springframework.stereotype.Service;
+@Service public class EmailService { private final JavaMailSender sender; private final boolean enabled; public EmailService(JavaMailSender sender,@Value("${app.email.enabled:false}") boolean enabled){this.sender=sender;this.enabled=enabled;} public void send(String to,String subject,String text){if(!enabled||to==null||to.isBlank())return; try{SimpleMailMessage m=new SimpleMailMessage();m.setTo(to);m.setSubject(subject);m.setText(text);sender.send(m);}catch(Exception ignored){}} }
