@@ -2083,3 +2083,204 @@
     padding-right: 8px;
   }
 }
+
+/* Reports and shared workspace actions */
+.workspaceContent .headActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.workspaceContent .secondary {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid var(--ws-border);
+  border-radius: 9px;
+  background: var(--ws-panel);
+  color: var(--ws-text);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.workspaceContent .secondary:hover:not(:disabled) {
+  border-color: #c9c3ff;
+  background: var(--ws-hover);
+  transform: translateY(-1px);
+}
+
+.workspaceContent .secondary:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.workspaceContent .reportChart {
+  margin-bottom: 20px;
+}
+
+.workspaceContent .reportChartHeading h2 {
+  margin: 0;
+  color: var(--ws-text);
+  font-size: 16px;
+}
+
+.workspaceContent .reportChartHeading p {
+  margin: 7px 0 0;
+  color: var(--ws-muted);
+  font-size: 12px;
+}
+
+.workspaceContent .reportRows {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.workspaceContent .reportRow {
+  display: grid;
+  grid-template-columns: minmax(105px, 170px) minmax(70px, 1fr) 28px;
+  align-items: center;
+  gap: 14px;
+  color: var(--ws-muted);
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.workspaceContent .reportRow b {
+  color: var(--ws-text);
+  text-align: right;
+}
+
+.workspaceContent .reportEmpty {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px dashed var(--ws-border);
+  border-radius: 10px;
+  color: var(--ws-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.workspaceContent .printOnly {
+  display: none;
+}
+
+.workspaceContent .printOnly > p {
+  color: var(--ws-muted);
+  font-size: 12px;
+}
+
+.workspaceContent .printOnly h3 {
+  margin: 24px 0 10px;
+  color: var(--ws-text);
+  font-size: 14px;
+}
+
+.workspaceContent .printSummary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.workspaceContent .printSummary > div {
+  display: grid;
+  gap: 7px;
+  padding: 14px;
+  border: 1px solid var(--ws-border);
+  border-radius: 9px;
+}
+
+.workspaceContent .printSummary span {
+  color: var(--ws-muted);
+  font-size: 11px;
+}
+
+.workspaceContent .printSummary b {
+  color: var(--ws-text);
+  font-size: 16px;
+}
+
+.workspaceContent .printTable {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--ws-text);
+  font-size: 12px;
+  text-align: left;
+}
+
+.workspaceContent .printTable th,
+.workspaceContent .printTable td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--ws-border);
+}
+
+.workspaceContent .printTable th {
+  color: var(--ws-muted);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .workspaceContent .headActions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .workspaceContent .headActions .secondary,
+  .workspaceContent .headActions .primary {
+    flex: 1 1 auto;
+  }
+
+  .workspaceContent .reportRow {
+    grid-template-columns: minmax(82px, 110px) minmax(48px, 1fr) 24px;
+    gap: 9px;
+    font-size: 11px;
+  }
+}
+
+@media print {
+  @page { margin: 14mm; }
+
+  body { background: #fff !important; }
+  .workspaceSidebar,
+  .workspaceTopbar,
+  .reportsScreen { display: none !important; }
+  .workspaceApp {
+    display: block !important;
+    min-height: 0 !important;
+    background: #fff !important;
+    color: #111827 !important;
+  }
+  .workspaceMain { width: 100% !important; }
+  .workspaceContent {
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  .workspaceContent .printOnly {
+    display: block !important;
+    max-width: none;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    color: #111827 !important;
+  }
+  .workspaceContent .printOnly h2,
+  .workspaceContent .printOnly h3,
+  .workspaceContent .printSummary b { color: #111827 !important; }
+  .workspaceContent .printSummary > div { border-color: #d1d5db !important; }
+  .workspaceContent .printTable th,
+  .workspaceContent .printTable td { border-color: #d1d5db !important; }
+}
